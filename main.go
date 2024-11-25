@@ -6,27 +6,15 @@ import (
 )
 
 func main() {
-	fmt.Println("When's Saturday?")
-	today := time.Now().Weekday()
-	switch time.Monday {
-	case today + 0:
-		fmt.Println("Today.")
-	case today + 1:
-		fmt.Println("Tomorrow.")
-	case today + 2:
-		fmt.Println("In two days.")
-	default:
-		fmt.Println("Too far away.")
-	}
+	count := 0
 
-	t := time.Now()
-	fmt.Println(t)
-	switch {
-	case t.Hour() < 12:
-		fmt.Println("Good morning!")
-	case t.Hour() < 17:
-		fmt.Println("Good afternoon.")
-	default:
-		fmt.Println("Good evening.")
+	for i := 1; i <= 5; i++ {
+		go func() {
+			for j := 1; j <= 100; j++ {
+				count++
+				fmt.Println(count)
+			}
+		}()
 	}
+	time.Sleep(time.Second * 1)
 }
